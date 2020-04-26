@@ -5,6 +5,7 @@ export class Book {
     liennTelecharg : string;
     fileUrl : string;
     fbShareLink: string;
+    currentUserEmail: string;
     constructor(public title: string) {
     }
   }

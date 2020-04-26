@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Book } from '../../models/file.model';
 import { BooksService } from '../../services/books.service';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-book-form',
@@ -16,6 +17,7 @@ export class BookFormComponent implements OnInit {
   fileUrl: string;
   fbShareLink: string;
   type: string; 
+  currentUserEmail: string;
   extension: string;
   taille : number;
   lienTele : string;
@@ -25,6 +27,11 @@ export class BookFormComponent implements OnInit {
               
   ngOnInit() {
     this.initForm();
+    firebase.auth().onAuthStateChanged(user => {
+      if(user) {
+        this.currentUserEmail = user.email
+      }
+    })
   }
   
   initForm() {
@@ -45,6 +52,7 @@ export class BookFormComponent implements OnInit {
     newBook.taille = this.taille;
     newBook.type = this.type;
     newBook.liennTelecharg = this.lienTele;
+    newBook.currentUserEmail = this.currentUserEmail;
     if(this.fileUrl && this.fileUrl !== '') {
       newBook.fileUrl = this.fileUrl;
       newBook.fbShareLink = this.fbShareLink;

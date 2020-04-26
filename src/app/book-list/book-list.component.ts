@@ -3,6 +3,7 @@ import { BooksService } from '../services/books.service';
 import { Book } from '../models/file.model';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-book-list',
@@ -11,7 +12,8 @@ import { Router } from '@angular/router';
 })
 export class BookListComponent implements OnInit, OnDestroy {
 
-  books: Book[];
+  public books: Book[];
+  currentUserEmail: string;
   booksSubscription: Subscription;
 
   constructor(private booksService: BooksService, private router: Router) {}
@@ -19,7 +21,19 @@ export class BookListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.booksSubscription = this.booksService.booksSubject.subscribe(
       (books: Book[]) => {
-        this.books = books;
+        firebase.auth().onAuthStateChanged(user => {
+          let userBooks = []
+          if(user) {
+            this.currentUserEmail = user.email
+
+            for (let i = 0; i < books.length; i++) { 
+              if (books[i].currentUserEmail == this.currentUserEmail) {
+                userBooks.push(books[i]);
+              }
+            }
+            this.books = userBooks;
+          }
+        })
       }
     );
     this.booksService.emitBooks();
