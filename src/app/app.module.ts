@@ -14,14 +14,18 @@ import { SingleBookComponent } from './book-list/single-book/single-book.compone
 import { BookListComponent } from './book-list/book-list.component';
 import { BooksService } from './services/books.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { AcceuilComponent } from './acceuil/acceuil.component';
+import { ProfilComponent } from './profil/profil.component';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
   { path: 'auth/signin', component: SigninComponent },
+  { path: 'acceuil', component: AcceuilComponent},
   { path: 'books', canActivate: [AuthGuardService], component: BookListComponent },
+  { path: 'profil', canActivate: [AuthGuardService], component: ProfilComponent },
   { path: 'books/new', canActivate: [AuthGuardService], component: BookFormComponent },
   { path: 'books/view/:id', canActivate: [AuthGuardService], component: SingleBookComponent },
-  { path: '', redirectTo: 'books', pathMatch: 'full' },
+  { path: '', redirectTo: 'acceuil', pathMatch: 'full' },
   { path: '**', redirectTo: 'books' }
 ];
 @NgModule({
@@ -32,7 +36,9 @@ const appRoutes: Routes = [
     HeaderComponent,
     BookFormComponent,
     SingleBookComponent,
-    BookListComponent
+    BookListComponent,
+    AcceuilComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,

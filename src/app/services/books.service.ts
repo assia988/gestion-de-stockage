@@ -48,17 +48,6 @@ createNewBook(newBook: Book) {
 }
 
 removeBook(book: Book) {
-  if(book.photo) {
-    const storageRef = firebase.storage().refFromURL(book.photo);
-    storageRef.delete().then(
-      () => {
-        console.log('Photo removed!');
-      },
-      (error) => {
-        console.log('Could not remove photo! : ' + error);
-      }
-    );
-  }
   const bookIndexToRemove = this.books.findIndex(
     (bookEl) => {
       if(bookEl === book) {
@@ -75,7 +64,7 @@ uploadFile(file: File) {
     (resolve, reject) => {
       const almostUniqueFileName = Date.now().toString();
       const upload = firebase.storage().ref()
-        .child('images/' + almostUniqueFileName + file.name).put(file);
+        .child('fichiers/' + almostUniqueFileName + file.name).put(file);
       upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
         () => {
           console.log('Chargement…');

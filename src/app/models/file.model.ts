@@ -1,6 +1,10 @@
 export class Book {
-    photo: string;
-    synopsis: string;
-    constructor(public title: string, public author: string) {
+    extension : string;
+    taille : number;
+    type : string;
+    liennTelecharg : string;
+    fileUrl : string;
+    fbShareLink: string;
+    constructor(public title: string) {
     }
   }

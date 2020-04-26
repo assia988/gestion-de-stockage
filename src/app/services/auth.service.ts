@@ -6,11 +6,20 @@ import * as firebase from 'firebase';
 export class AuthService {
 
   constructor() { }
-  createNewUser(email: string, password: string) {
+  createNewUser(username: string, email: string, password: string) {
     return new Promise(
       (resolve, reject) => {
         firebase.auth().createUserWithEmailAndPassword(email, password).then(
           () => {
+            firebase.auth().onAuthStateChanged(function(user) {
+              user.updateProfile({ 
+                displayName: username,
+              }).then(function() {
+                // console.log(user.displayName);
+              }, function(error) {
+                console.log(error);
+              });  
+          });
             resolve();
           },
           (error) => {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../../models/file.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BooksService } from '../../services/books.service';
-
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-single-book',
   templateUrl: './single-book.component.html',
@@ -16,11 +16,12 @@ export class SingleBookComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
-    this.book = new Book('', '');
+    this.book = new Book('');
     const id = this.route.snapshot.params['id'];
     this.booksService.getSingleBook(+id).then(
       (book: Book) => {
         this.book = book;
+        // console.log(book)
       }
     );
   }
