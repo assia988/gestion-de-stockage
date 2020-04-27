@@ -6,6 +6,7 @@ export class Book {
     fileUrl : string;
     fbShareLink: string;
     currentUserEmail: string;
+    availableStorageSize: number;
     constructor(public title: string) {
     }
   }

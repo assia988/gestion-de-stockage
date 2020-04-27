@@ -11,7 +11,7 @@ import * as firebase from 'firebase';
 export class SingleBookComponent implements OnInit {
 
   book: Book;
-
+  num = 0;
   constructor(private route: ActivatedRoute, private booksService: BooksService,
               private router: Router) {}
 
@@ -21,7 +21,17 @@ export class SingleBookComponent implements OnInit {
     this.booksService.getSingleBook(+id).then(
       (book: Book) => {
         this.book = book;
-        // console.log(book)
+        if(book.type === "application/pdf"){
+          this.num=1;
+        }
+        else if(book.type ==="application/msword"){
+          this.num=2;
+
+        }
+        else if(book.type ==="image/jpeg"){
+          this.num=3;
+
+        } 
       }
     );
   }

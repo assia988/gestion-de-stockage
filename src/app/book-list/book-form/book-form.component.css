@@ -1,0 +1,15 @@
+h2 {
+    text-align: center;
+}
+
+.storageInMB {
+    font-weight: 700;
+    color: forestgreen;
+    margin: 2rem auto;
+}
+
+.storageInMBError {
+    font-weight: 700;
+    color: red;
+    margin: 2rem auto;
+}

@@ -1,9 +1,13 @@
 <div class="row">
     <div class="col-xs-12">
-      <!--img style="max-width:400px;" *ngIf="book.icon " [src]="book.icon"-->
+      <div class="image-wrapper">
+          <img class="icon" *ngIf="num == 1" src="assets/images/pdf.png" />
+          <img class="icon" *ngIf="num == 2" src="assets/images/word.jpg" />
+          <img class="icon" *ngIf="num == 3" src="assets/images/image.png" />
+      </div>
       <h2>{{ book.title }}</h2>
       <h2>liennTelecharg
-          <a href="https://firebasestorage.googleapis.com/v0/b/fir-proj-9d7c8.appspot.com/o/fichiers%2F1587841786693Desktop2.jpg?alt=media&token=4180b8cc-c5a9-48b1-b0d7-bff040348cba" target="_blank" download>Download</a>
+          <a [href]="book.fileUrl" target="_blank" download>Download</a>
       </h2>
       <p>
         <span>lien de partage :</span>
@@ -11,7 +15,7 @@
             Share on Facebook 
           </a>
       </p>
-      <p> taille : {{book.taille}} bytes</p>
+      <p> taille : {{book.taille}} MB</p>
       <p>{{book.extension}}</p>
       
       <button class="btn btn-default" (click)="onBack()">Retour</button>

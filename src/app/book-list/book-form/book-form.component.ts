@@ -22,6 +22,9 @@ export class BookFormComponent implements OnInit {
   taille : number;
   lienTele : string;
   fileUploaded = false;
+  availableStorageSize = 100; // MB
+  errorStorageSpace: string;
+  public books: Book[];
   constructor(private formBuilder: FormBuilder, private booksService: BooksService,
               private router: Router) { }
               
@@ -30,6 +33,17 @@ export class BookFormComponent implements OnInit {
     firebase.auth().onAuthStateChanged(user => {
       if(user) {
         this.currentUserEmail = user.email
+        // console.log("executed 2")
+        firebase.database().ref('/books').on('value', (data) => {
+          this.books = data.val() ? data.val() : [];
+
+          for (let i = this.books.length -1 ; i >= 0; i--) { 
+            if (this.books[i].currentUserEmail == this.currentUserEmail) {
+              this.availableStorageSize = this.books[i].availableStorageSize;
+              break;
+            }
+          }
+        });
       }
     })
   }
@@ -57,8 +71,14 @@ export class BookFormComponent implements OnInit {
       newBook.fileUrl = this.fileUrl;
       newBook.fbShareLink = this.fbShareLink;
     }
-    this.booksService.createNewBook(newBook);
-    this.router.navigate(['/books']);
+    if (this.availableStorageSize !== 0) {
+      newBook.availableStorageSize = this.availableStorageSize
+      this.errorStorageSpace = ""
+      this.booksService.createNewBook(newBook);
+      this.router.navigate(['/books']);
+    } else {
+      this.errorStorageSpace = "You do not have enough storage space"
+    }
 }
 onUploadFile(file: File) {
   this.fileIsUploading = true;
@@ -67,12 +87,13 @@ onUploadFile(file: File) {
       this.fileUrl = url;
       this.fbShareLink = "https://www.facebook.com/sharer/sharer.php?u="+url;
       this.lienTele = url;
-      this.taille = file.size;
+      this.taille = file.size / 1000000;
       this.type = file.type;
       this.extension = this.detectExtension(file.name)
       this.fileIsUploading = false;
       this.fileUploaded = true;
-      console.log(file)
+      this.availableStorageSize = ((this.availableStorageSize * 1000000) > file.size ? ((this.availableStorageSize * 1000000) - file.size)  / 1000000 : 0)
+      console.log(this.taille)
     }
   );
 }
