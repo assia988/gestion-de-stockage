@@ -16,10 +16,20 @@
                  class="form-control"
                  formControlName="password">
         </div>
+        <div class="signin-btns">
         <button class="btn btn-primary"
                 type="submit"
                 [disabled]="signInForm.invalid">Connexion</button>
+        </div>
       </form>
       <p class="text-danger">{{ errorMessage }}</p>
+      <div>
+          <div class="signin-btns">
+            <button class="btn btn-outline-dark"  (click)=signInWithGoogle() style="text-transform:none;border: 1px solid black; text-transform: none; background: white;">
+              <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+              Se connecter avec Google
+            </button>
+          </div>
+        </div>
     </div>
   </div>

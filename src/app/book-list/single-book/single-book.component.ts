@@ -28,9 +28,14 @@ export class SingleBookComponent implements OnInit {
           this.num=2;
 
         }
-        else if(book.type ==="image/jpeg"){
+        else if(book.type.includes("image")){
           this.num=3;
-
+        }
+        else if(book.type.includes("video")){
+          this.num=4;
+        } 
+        else if(book.type.includes("audio")){
+          this.num=5;
         } 
       }
     );

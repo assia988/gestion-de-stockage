@@ -1,7 +1,15 @@
-.image-wrapper {
-    text-align: center;
-}
-
 .icon {
-    max-width: 100px;
+    max-width: 45px;
+}
+th, td{
+font-size: 19px;
+}
+.table-ctn{
+margin-top: 8rem;
+}
+span{
+    font-size: 15px!important;
+}
+h1{
+    text-align: center;
 }

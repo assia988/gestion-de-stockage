@@ -15,10 +15,11 @@
                  class="form-control" formControlName="title">
         </div>
         <div class="form-group">
-          <label>Ajouter une photo</label>
+          <label>Ajouter un Fichier</label>
           <input type="file" (change)="detectFiles($event)"
-                 class="form-control" accept="image/*,.pdf,.doc" />
+                 class="form-control" accept="image/*,.pdf,.doc,video/*,audio/*" />
           <p class="text-success" *ngIf="fileUploaded">Fichier chargé !</p>
+          <p class="text-success" *ngIf="fileIsUploading">Fichier en cours de chargement !</p>
         </div>
         <button class="btn btn-success" [disabled]="bookForm.invalid || fileIsUploading"
               type="submit">Enregistrer

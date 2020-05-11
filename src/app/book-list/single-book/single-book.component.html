@@ -1,23 +1,53 @@
 <div class="row">
     <div class="col-xs-12">
-      <div class="image-wrapper">
-          <img class="icon" *ngIf="num == 1" src="assets/images/pdf.png" />
-          <img class="icon" *ngIf="num == 2" src="assets/images/word.jpg" />
-          <img class="icon" *ngIf="num == 3" src="assets/images/image.png" />
-      </div>
-      <h2>{{ book.title }}</h2>
-      <h2>liennTelecharg
-          <a [href]="book.fileUrl" target="_blank" download>Download</a>
-      </h2>
-      <p>
-        <span>lien de partage :</span>
-        <a [href]="book.fbShareLink" target="_blank">
-            Share on Facebook 
-          </a>
-      </p>
-      <p> taille : {{book.taille}} MB</p>
-      <p>{{book.extension}}</p>
-      
+      <h1 class="text-primary">Information sur le fichier</h1>
+      <div class="table-ctn">
+      <table class="table">
+          <tbody>
+              <tr>
+                  <th >Type du Fichier</th>
+                    <td>
+                        <div class="image-wrapper">
+                            <img class="icon" *ngIf="num == 1" src="assets/images/pdf.png" />
+                            <img class="icon" *ngIf="num == 2" src="assets/images/word.jpg" />
+                            <img class="icon" *ngIf="num == 3" src="assets/images/image.png" />
+                            <img class="icon" *ngIf="num == 4" src="assets/images/video.png" />
+                            <img class="icon" *ngIf="num == 5" src="assets/images/audio.png" />
+                        </div>
+                    </td>
+              </tr>
+              <tr>
+                <th>Nom du Fichier</th>
+                  <td>{{ book.title }}</td>
+              </tr>
+              <tr>
+                <th>Lien de Téléchargement</th>
+                  <td>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                    <a  class="downoald-link" [href]="book.fileUrl" target="_blank" download> <i class="fa fa-download"></i> Télécharger le fichier</a></td>
+              </tr>
+              <tr>
+                <th>Lien de Partage Facebook</th>
+                  <td>
+                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                      <a class="fa fa-facebook fb" [href]="book.fbShareLink" target="_blank">
+                      Partager via Facebook  
+                      </a>
+                  </td>
+              </tr>
+            <tr>
+                <th>Taille du Fichier</th>
+                  <td>{{book.taille}} MB</td>
+              </tr>
+              <tr>
+                  <th>Extension du Fichier</th>
+                    <td>
+                      <span class="badge">{{book.extension}}</span>
+                    </td>
+                </tr>
+          </tbody>
+      </table>
+    </div>      
       <button class="btn btn-default" (click)="onBack()">Retour</button>
     </div>
   </div>

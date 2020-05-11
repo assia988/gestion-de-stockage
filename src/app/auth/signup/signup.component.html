@@ -23,9 +23,11 @@
                  class="form-control"
                  formControlName="password">
         </div>
+        <div class="creerCompte-btn">
         <button class="btn btn-primary"
                 type="submit"
                 [disabled]="signupForm.invalid">Créer mon compte</button>
+        </div>
       </form>
       <p class="text-danger">{{ errorMessage }}</p>
     </div>
