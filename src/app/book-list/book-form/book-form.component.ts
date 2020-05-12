@@ -93,7 +93,7 @@ onUploadFile(file: File) {
       this.fileIsUploading = false;
       this.fileUploaded = true;
       this.availableStorageSize = ((this.availableStorageSize * 1000000) > file.size ? ((this.availableStorageSize * 1000000) - file.size)  / 1000000 : 0)
-      console.log(this.taille)
+      // console.log(this.taille)
     }
   );
 }

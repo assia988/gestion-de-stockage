@@ -42,16 +42,16 @@ onSubmit() {
   displayName: username,
   }).then(function() {
   // Update successful.
-  console.log('User Profile Updated Successfully');
+  // console.log('User Profile Updated Successfully');
   }).catch(function(error) {
   // An error happened.
   });
 
   user.updateEmail(email).then(function() {
-    console.log('email Profile Updated Successfully');
+    // console.log('email Profile Updated Successfully');
     // Update successful.
     user.updatePassword(password).then(function() {
-      console.log('password Profile Updated Successfully');
+      // console.log('password Profile Updated Successfully');
       // Update successful.
     }).catch(function(error) {
       // An error happened.

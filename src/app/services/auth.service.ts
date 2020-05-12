@@ -15,7 +15,7 @@ export class AuthService {
               user.updateProfile({ 
                 displayName: username,
               }).then(function() {
-                // console.log(user.displayName);
+                console.log(user.displayName);
               }, function(error) {
                 console.log(error);
               });  

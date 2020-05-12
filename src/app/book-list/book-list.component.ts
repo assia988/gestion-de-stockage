@@ -25,7 +25,7 @@ export class BookListComponent implements OnInit, OnDestroy {
           let userBooks = []
           if(user) {
             this.currentUserEmail = user.email
-            console.log("currentUserEmail", user.email)
+            // console.log("currentUserEmail", user.email)
 
             for (let i = 0; i < books.length; i++) { 
               if (books[i].currentUserEmail == this.currentUserEmail) {
@@ -35,7 +35,7 @@ export class BookListComponent implements OnInit, OnDestroy {
               }
             }
             this.books = userBooks;
-            console.log("books", userBooks)
+            // console.log("books", userBooks)
           }
         })
       }
@@ -52,7 +52,7 @@ export class BookListComponent implements OnInit, OnDestroy {
   }
 
   onViewBook(id: number) {
-    console.log("id", id)
+    // console.log("id", id)
     this.router.navigate(['/books', 'view', id]);
   }
   
