@@ -18,8 +18,10 @@ export class SingleBookComponent implements OnInit {
   ngOnInit() {
     this.book = new Book('');
     const id = this.route.snapshot.params['id'];
+    console.log("received id", id)
     this.booksService.getSingleBook(+id).then(
       (book: Book) => {
+        // console.log("book", book)
         this.book = book;
         if(book.type === "application/pdf"){
           this.num=1;
@@ -33,10 +35,10 @@ export class SingleBookComponent implements OnInit {
         }
         else if(book.type.includes("video")){
           this.num=4;
-        } 
+        }
         else if(book.type.includes("audio")){
           this.num=5;
-        } 
+        }
       }
     );
   }

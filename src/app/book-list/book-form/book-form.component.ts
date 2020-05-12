@@ -33,7 +33,7 @@ export class BookFormComponent implements OnInit {
     firebase.auth().onAuthStateChanged(user => {
       if(user) {
         this.currentUserEmail = user.email
-        // console.log("executed 2")
+        // console.log("currentUserEmail", user.email)
         firebase.database().ref('/books').on('value', (data) => {
           this.books = data.val() ? data.val() : [];
 
